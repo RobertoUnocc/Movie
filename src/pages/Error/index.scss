@@ -1,0 +1,11 @@
+.error{
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    font-size: 100px;
+
+    span .text-error{
+        color:orangered
+    }
+}

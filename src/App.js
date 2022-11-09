@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { Layout } from "antd";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
+import MenuTop from "./components/MenuTop/MenuTop";
+
+//Pages
+import Error404 from "./pages/Error/Error404";
+import Home from "./pages/Home";
+import Movie from "./pages/Movie/Movie";
+import NewMovies from "./pages/NewMovies";
+import Popular from "./pages/Popular";
+import Search from "./pages/Search";
+
+import "./App.css";
 
 function App() {
+  const { Header, Content } = Layout;
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Header style={{ zIndex: 1 }}>
+          <MenuTop />
+        </Header>
+
+        <Content>
+          <Routes>
+            <Route path="/" exact={true} element={<Home />} />
+            <Route path="/new-movies" exact={true} element={<NewMovies />} />
+            <Route path="/movie/:id" exact={true} element={<Movie />} />
+            <Route path="/search" exact={true} element={<Search />} />
+
+            <Route path="*" element={<Error404 />} />
+          </Routes>
+        </Content>
+      </Router>
     </div>
   );
 }
